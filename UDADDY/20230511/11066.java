@@ -23,13 +23,9 @@ public class No11066 {
             return b;
     }
 
-    public static int sum(int[] pages, int s, int e) {
-        int sum = 0;
-
-        for (int i = s; i <= e; i++)
-            sum += pages[i];
-
-        return sum;
+    public static int sum(int[] a, int s, int e) {
+        if (s == 0) return a[e];
+        else return a[e] - a[s - 1];
     }
 
     private static int solution(int[] pages) {
@@ -52,7 +48,7 @@ public class No11066 {
                 DP[i][j] = Integer.MAX_VALUE;    // MIN을 구하기 위해
 
                 for (int k = i; k < j; k++)    // i~j 사이의 k값
-                    DP[i][j] = min(DP[i][k] + DP[k + 1][j] + sum(pages, i, j), DP[i][j]);
+                    DP[i][j] = min(DP[i][k] + DP[k + 1][j] + sum(s, i, j), DP[i][j]);
             }
         }
         return DP[0][pages.length - 1];
